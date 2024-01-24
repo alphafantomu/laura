@@ -99,7 +99,7 @@ local createExecutable = function(archive)
 	local filename = path.basename(archive):sub(1, -6)..'.exe';
 	local executable_location = path.join(BUILD_NAME, filename);
 	if (system_os == 'Windows') then
-		print('Created fused executable...');
+		print('Created fused executable...', format(COPY_FUSED_FORMAT, LOVE2D_EXE, archive, executable_location));
 		local c_res, _, c_code = qexecute(format(COPY_FUSED_FORMAT, LOVE2D_EXE, archive, executable_location));
 		assert(c_res and c_code == 0, 'copy command encountered an error');
 		fsExists(executable_location, 'file', 'failed to find file ('..filename..') after copy');
